@@ -1,0 +1,19 @@
+<apex:page controller="wrapperControllers" >
+    <apex:form >
+    	<apex:pageBlock >
+        	<apex:pageBlockSection >
+            	<apex:pageBlockTable value="{!wraplist}" var="wr">
+                    <apex:column >
+                    	<apex:inputCheckbox value="{!wr.b}"/>
+                    </apex:column>
+                    <apex:column style="text-align:left; padding-right:50px;" value="{!wr.conts.Id}"/>
+                    <apex:column style="text-align:left; padding-right:100px;" value="{!wr.conts.Name}"/>
+                    <apex:column style="text-align:left; padding-right:100px;" value="{!wr.conts.AccountId}"/>
+                    <apex:column style="text-align:left; padding-right:80px;" value="{!wr.conts.Email}"/>
+					<apex:column style="text-align:left; padding-right:100px;" value="{!wr.conts.Phone}"/>
+            <apex:inlineEditSupport event="ondblClick" />
+              	</apex:pageBlockTable>
+            </apex:pageBlockSection>
+        </apex:pageBlock>
+    </apex:form>
+</apex:page>

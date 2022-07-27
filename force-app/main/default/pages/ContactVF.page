@@ -1,0 +1,46 @@
+<apex:page standardcontroller="Account" extensions="SimpleInsertControllers2">
+    <apex:form >
+        <apex:pageBlock title="New Contact">
+            <apex:pageMessages ></apex:pageMessages>
+           
+            <apex:pageBlockSection title="Contact Creation Page">
+                <apex:inputField value="{!con.FirstName}"/>
+                <apex:inputField value="{!con.LastName}"/>
+                <apex:inputField value="{!con.AccountId}"/>
+                <apex:inputField value="{!con.Title}"/>
+                <apex:inputField value="{!con.Email}"/>
+                <apex:inputField value="{!con.Phone}"/>
+                <apex:inlineEditSupport event="ondblClick" />
+            </apex:pageBlockSection>
+            
+            <apex:pageBlockButtons >
+                <apex:commandButton value="Save" action="{!saveContact}"/>
+                <apex:commandButton value="Cancel" action="{!back}"/>
+            </apex:pageBlockButtons>
+        </apex:pageBlock>
+        
+        <apex:pageBlock title="All Contact" >
+            <apex:inlineEditSupport />
+            <apex:pageBlockButtons >
+                <apex:commandButton value="Delete" action="{!deleteContact}"/>
+            </apex:pageBlockButtons>
+            <apex:pageBlockTable value="{!lstWrap}" var="wrap">
+                <apex:column >
+                    <apex:inputCheckbox value="{!wrap.isChecked}"/>
+                </apex:column>
+                <apex:column value="{!wrap.con.FirstName}"/>
+                <apex:column value="{!wrap.con.LastName}"/>
+                <apex:column value="{!wrap.con.AccountId}"/>
+                <apex:column value="{!wrap.con.Title}"/>
+                <apex:column value="{!wrap.con.Email}"/>
+                <apex:column value="{!wrap.con.Phone}"/>
+               <apex:inlineEditSupport />    
+                <apex:column >
+                    <apex:commandLink value="Edit" action="{!editContact}">
+                        <apex:param name="conid" assignTo="{!conid}" value="{!wrap.con.id}"/>
+                    </apex:commandLink>
+                </apex:column>
+            </apex:pageBlockTable>
+        </apex:pageBlock>
+    </apex:form>
+</apex:page>

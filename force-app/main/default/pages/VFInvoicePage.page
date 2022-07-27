@@ -1,0 +1,111 @@
+<apex:page StandardController="Order" renderAs="pdf">
+    <apex:form >
+        <table style="font-family:sans-serif; text-align:center; padding-left:150px">
+            <tr>
+                <td style="font:24pt;"></td>
+                <td style="font:24pt;"><b>INVOICE</b></td>
+            </tr>
+            <tr>
+                <td style="font:10pt;"></td>
+                <td style="font:10pt;"><i>108, HSIIDC Industrial Estate, Sector 31, Faridabad, Haryana 121008</i></td>
+            </tr>
+            <tr>
+                <td style="font:10pt;"></td>
+                <td style="font:10pt;"><i>Phone:9822556461 Email:DMS@gmail.com</i></td>
+            </tr>
+            <tr>
+                <td style="font:10pt;"></td>
+                <td style="font:10pt;"><i>Website:https://www.dms.com</i></td>
+            </tr>
+        </table>
+        <br/>
+        <br/>
+        	<table style="font-family:sans-serif; ">
+                <tr>
+                    <td style="text-align:left; padding-left:1px;">Invoice No: </td>
+                    <td style="text-align:left; padding-left:5px"><apex:outputText value="{!Order.OrderNumber}"/></td>
+                    <td style="text-align:left; padding-left:300px;">Invoice Date: </td>
+                    <td style="text-align:left; padding-left:5px"><apex:outputText value="{!DAY(TODAY())}-{!MONTH(TODAY())}-{!YEAR(TODAY())}"/></td>
+                    
+                </tr>
+                <tr>
+                    <td style="text-align:left; padding-left:1px;">Account Name: </td>
+                    <td style="text-align:left; padding-left:5px"><apex:outputText value="{!Order.Account.Name}"/></td>
+                    <td style="text-align:left; padding-left:300px;">Due Date: </td>
+                    <td style="text-align:left; padding-left:5px"><apex:outputText value="{!DAY(TODAY())}-{!MONTH(TODAY())+2}-{!YEAR(TODAY())}"/></td>
+                </tr>
+                </table>
+        <br/>
+        <br/>
+        <table style="border:0.5px solid #fff; font-family:sans-serif;">
+	<tr style="color:#fff; background-color:#C4AEAD;">
+    <th style="text-align:margin-left; padding-left:5px; ">BILL TO</th>
+    <th style="background-color:#fff;">BLANK COL</th>
+    <th style="padding-left:5px; padding-right:170px;">SHIP TO</th>    
+	</tr>
+            <tr>
+            <td></td>
+            </tr>
+            <tr>
+            	<td style=" padding-left:5px"><apex:outputText value="{!Order.Name}"/></td>
+                <td></td>
+            	<td style=" padding-left:5px"><apex:outputText value="{!Order.Name}"/></td>
+            </tr>
+            <tr>
+                <td style=" padding-left:5px"><apex:outputText value="{!Order.BillingStreet},{!Order.BillingCity},{!Order.BillingState},{!Order.BillingPostalCode},{!Order.BillingCountry}"/></td>
+           			<td></td>
+                <td style=" padding-left:5px"><apex:outputText value="{!Order.ShippingStreet},{!Order.ShippingCity},{!Order.ShippingState},{!Order.ShippingPostalCode},{!Order.ShippingCountry}"/></td>
+            </tr>
+            <tr>
+            <td></td>
+            </tr>
+            </table>
+            <br/>
+            <br/>
+            	<apex:pageBlock >
+            		<table style="border:0px solid #fff; font-family:sans-serif;">
+                        <tr style="color:#fff; background-color:#C4AEAD;">
+                        <th style="padding-left:5px; padding-right:540px;">PRODUCT_DETAILS</th>
+            			<br/>
+                   	    </tr>
+                    </table>
+                        <apex:pageBlockTable value="{!Order.orderItems}" border="1" frame="box" columns="5" var="con" styleClass="color-properties">
+                        	<apex:column style="padding-left:5px; padding-right:50px;" value="{!con.Product2.Name}"/>
+                            <apex:column style="padding-left:5px; padding-right:100px;" value="{!con.Product2.ProductCode}"/>
+                            <apex:column style="padding-left:5px; padding-right:35px;" value="{!con.Quantity}"/>
+                            <apex:column style="padding-left:5px; padding-right:45px;" value="{!con.UnitPrice}"/>
+                            <apex:column style="padding-left:5px; padding-right:45px;" value="{!con.TotalPrice}"/>
+                        </apex:pageBlockTable>
+             	</apex:pageBlock>
+                <br/>
+                <br/>
+        <table style="font-family:sans-serif;">
+<tr>
+<td style="text-align:left; padding-left:425px;">Product Amount: </td>
+<td style="text-align:left; padding-left:5px"><apex:outputText value="{!Order.TotalAmount}"/></td>
+</tr>
+<tr>
+<td style="text-align:left; padding-left:425px;">Discount: </td>
+<td style="text-align:left; padding-left:5px"><apex:outputText value="{!Order.Discount__c}"/></td>
+</tr>
+<tr>
+<td style="text-align:left; padding-left:425px;">Total Amount: </td>
+<td style="text-align:left; padding-left:5px"><apex:outputText value="{!Order.Total_Amount__c}"/></td>
+</tr>
+<tr>
+<td style="text-align:left; padding-left:425px;">Generated By: </td>
+<td style="text-align:left; padding-left:5px"><apex:outputText value="{!$User.FirstName} {!$User.LastName}"/></td>
+</tr>
+</table>
+        <br/>
+        <br/>
+
+        <table style="font-family:sans-serif; text-align:center; padding-left:200px">
+            <tr>
+                <td style="font:13pt;"></td>
+                <td style="font:14pt;"><b>Thank you for your business!</b></td>
+            </tr>
+            </table>
+        
+    </apex:form>
+</apex:page>

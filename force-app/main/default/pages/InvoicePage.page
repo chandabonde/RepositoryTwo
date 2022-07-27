@@ -1,0 +1,42 @@
+<apex:page standardController="Invoice__c" renderAs="pdf">
+
+<table style="font-family:sans-serif; padding-bottom:30px;">
+<tr>
+    <td style="font:24pt; padding-left:10px; padding-right:250px;">Dealer Management Syatem</td>
+    <td style="font:24pt;">INVOICE</td>
+</tr>
+</table>
+
+<table style="border:0.5px solid #fff; font-family:sans-serif;">
+<tr>
+    <td style="padding-right:450px;"><apex:outputField value="{!Invoice__c.Billing_Street__c}"/></td>
+    <td style="test-align:right; padding-right:20px;">Date</td> 
+    <td style="text-align:right;"><apex:outputText value="{!DAY(TODAY())}-{!MONTH(TODAY())}-{!YEAR(TODAY())}"/></td> 
+</tr>
+<tr>
+    <td><apex:outputField value="{!Invoice__c.Billing_City__c}"/>, <span><apex:outputField value="{!Invoice__c.Billing_Zip_Postal_Code__c}"/></span></td>
+    <td style="text-align:right; padding-right:20px;">Invoice #</td>
+    <td style="text-align:right;">[<apex:outputText value="{!Invoice__c.Name}"/>]</td>
+</tr>
+<tr>
+
+    <td style="text-align:right; padding-right:20px;">Due Date</td>
+    <td style="text-align:right;"><apex:outputText value="{!DAY(Invoice__c.Due_Date__c)}-{!MONTH(Invoice__c.Due_Date__c)}-{!YEAR(Invoice__c.Due_Date__c)}"/></td>
+</tr>
+<tr>
+    <td><apex:outputField value="{!Invoice__c.Email__c}"/></td>
+</tr>
+<tr>
+    <td><apex:outputField value="{!Invoice__c.Website__c}"/></td>
+</tr>    
+</table>
+<br></br>
+<table style="border:0.5px solid #fff; font-family:sans-serif;">
+<tr style="color:#fff; background-color:#ff4500;">
+    <th style="padding-left:5px; padding-right:170px;">BILL TO</th>
+    <th style="background-color:#fff;">BLANK COL</th>
+    <th style="padding-left:5px; padding-right:170px;">SHIP TO</th>    
+</tr>
+
+</table>
+</apex:page>

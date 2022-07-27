@@ -1,0 +1,25 @@
+<apex:page standardController="Contact" recordSetVar="acts"> 
+    <apex:form >
+        <apex:pageBlock title="List of Contacts"> 
+            <apex:detail relatedList="false" title="false" inlineEdit="true"/>
+            <apex:pageBlockSection >
+                <apex:pageBlockTable value="{!acts}" var="a"> 
+                    <apex:column >
+                    	<apex:inputCheckbox />
+                    </apex:column>
+                    <apex:column style="text-align:left; padding-right:100px;" value="{!a.Name}"/>
+                    <apex:column style="text-align:left; padding-right:100px;" value="{!a.AccountId}"/> 
+                    <apex:column style="text-align:left; padding-right:100px;" value="{!a.Phone}"/>
+                    <apex:column style="text-align:left; padding-right:100px;" value="{!a.Email}"/>
+                    <apex:inlineEditSupport />
+                </apex:pageBlockTable>
+            </apex:pageBlockSection>
+            <apex:pageBlockButtons >
+                <apex:commandButton value="Next" action="{!next}"/>
+                <apex:commandButton value="Previous" Action="{!Previous}"/>
+                <apex:commandButton value="Save" Action="{!Quicksave}"/>
+                <apex:commandButton value="New Contact" Action="{!create}"/>
+            </apex:pageBlockButtons>
+        </apex:pageBlock>
+    </apex:form>
+</apex:page>
